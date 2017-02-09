@@ -1,0 +1,26 @@
+html, 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Desktop */
+@media screen and (min-width:1025px) {
+  .desktop {
+    display: inherit;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+/* Moblie */
+@media screen and (max-width:1024px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: inherit;
+  }
+}
