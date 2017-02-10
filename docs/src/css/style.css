@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     color: #2A214D;
-    background: #FFECC9;
+    background: #F6F0DA;
     height: 100vh;
   }
   .desktop .empty {
