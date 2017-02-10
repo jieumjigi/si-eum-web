@@ -1,3 +1,11 @@
+@font-face {
+  font-family:'Iropke Batang'; src:url('../font/IropkeBatangM.woff'), url('../font/IropkeBatangM.eot')
+}
+
+* { 
+  font-family: 'Iropke Batang', 'Spoqa Han Sans', 'Sans-serif'; 
+}
+
 html, 
 body {
   margin: 0;
@@ -21,6 +29,42 @@ body {
     display: none;
   }
   .mobile {
+    font-size: 13px;
     display: inherit;
+    height: 100vh;
+    color: white;
+  }
+  .container {
+    height: inherit;
+    background: rgba(0, 0, 0, 0.3);
+    overflow-x: hidden;
+  }
+  .poem.wrapper {
+    padding: 60px;
+  }
+  .poem.wrapper::after {
+    content: "";
+    background-image: url('../img/0.jpg');
+    background-size: cover;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;  
+  }
+  .poem.wrapper .title {
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+  .poem.wrapper .content {
+    line-height: 25px;
+    margin-bottom: 50px;
+  }
+  .deco > .dash {
+    width: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
   }
 }
