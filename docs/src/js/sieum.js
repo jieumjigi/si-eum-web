@@ -9,8 +9,30 @@ var container = `\
         <div class="poem author"></div>\
       </div>\
     </div>`;
-       
-var data = _.map(db, function(obj, idx) {
+var week_data, todat_data;
+
+$.ajax({
+  url: "http://localhost:3000/apis/sieum_data",
+  dataType: "jsonp",
+  error: withoutServer
+}).done(whenServerWorking);
+
+function withoutServer() {
+  week_data = _.map(local_db, makeWeekData);
+  
+  var $poem = {
+    title: $('.poem.title'),
+    author: $('.poem.author'),
+    content: $('.poem.content')
+  };
+
+  today_data = week_data[0];
+  $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
+
+  _.each($poem, attachData);
+}
+
+function makeWeekData(obj, idx) {
   $mobile.prepend(container);
   _.each(obj, function(val, key) {
     if (val.match(/\s\s/)) {
@@ -18,17 +40,33 @@ var data = _.map(db, function(obj, idx) {
     } 
   });
   return obj;
-});
+}
 
-var today_data = data[0];
-$('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
+function whenServerWorking(res) {
+  week_data = _.map(JSON.parse(res), makeWeekData);
+  
+  var $poem = {
+    title: $('.poem.title'),
+    author: $('.poem.author'),
+    content: $('.poem.content')
+  };
 
-var $poem = {
-  title: $('.poem.title'),
-  author: $('.poem.author'),
-  content: $('.poem.content')
-};
+  today_data = week_data[0];
+  $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
 
-_.each($poem, function(elem, key) {
+  _.each($poem, attachData);
+}
+
+function makeWeekData(obj, idx) {
+  $mobile.prepend(container);
+  _.each(obj, function(val, key) {
+    if (val.match(/\s\s/)) {
+      obj[key] = val.replace(/(\s{2})+/g, '<br/>')
+    } 
+  });
+  return obj;
+}
+
+function attachData(elem, key) {
   elem.html(today_data[key]);
-});
+}

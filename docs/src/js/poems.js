@@ -1,4 +1,4 @@
-var db = [
+var local_db = [
   {
     title : '호수',
     author: '정지용',
