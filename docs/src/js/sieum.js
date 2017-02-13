@@ -11,11 +11,14 @@ var container = `\
     </div>`;
 var week_data, todat_data;
 
-$.ajax({
-  url: "http://localhost:3000/apis/sieum_data",
-  dataType: "jsonp",
-  error: withoutServer
-}).done(whenServerWorking);
+// $.ajax({
+//   url: "http://localhost:3000/apis/sieum_data",
+//   dataType: "jsonp",
+//   error: withoutServer
+// }).done(whenServerWorking);
+
+$.get("http://localhost:3000/apis/sieum_data", whenServerWorking, "jsonp")
+ .fail(withoutServer);
 
 function withoutServer() {
   week_data = _.map(local_db, makeWeekData);
@@ -27,7 +30,7 @@ function withoutServer() {
   };
 
   today_data = week_data[0];
-  $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
+  // $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
 
   _.each($poem, attachData);
 }
@@ -52,19 +55,9 @@ function whenServerWorking(res) {
   };
 
   today_data = week_data[0];
-  $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
+  // $('.mobile .container').css('background-image', 'url(\'./src/img/' + today_data.img +'.jpg\')');
 
   _.each($poem, attachData);
-}
-
-function makeWeekData(obj, idx) {
-  $mobile.prepend(container);
-  _.each(obj, function(val, key) {
-    if (val.match(/\s\s/)) {
-      obj[key] = val.replace(/(\s{2})+/g, '<br/>')
-    } 
-  });
-  return obj;
 }
 
 function attachData(elem, key) {

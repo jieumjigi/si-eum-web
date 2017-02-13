@@ -58,12 +58,13 @@ body {
   background-position: 50% 50%;
 }
 .poem {
-  color: white;
+  color: #2A214D;
+  /*text-align: center;*/
 }
 .wrapper {
   height: 100vh;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  background-color:  #F6F0DA;
   overflow-y: auto;
 }
 .poem.title {
@@ -76,6 +77,6 @@ body {
 }
 .deco > .dash {
   width: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 13px;
 }
