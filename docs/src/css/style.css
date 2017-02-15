@@ -3,7 +3,7 @@
 }
 
 * { 
-  font-family: 'Iropke Batang', 'Spoqa Han Sans', 'Sans-serif'; 
+  font-family: 'Spoqa Han Sans', 'Sans-serif'; 
 }
 
 html, 
@@ -59,9 +59,10 @@ body {
 }
 .poem {
   color: #2A214D;
+  font-family: 'Iropke Batang';
   /*text-align: center;*/
 }
-.wrapper {
+.poem.wrapper {
   height: 100vh;
   padding: 50px;
   background-color:  #F6F0DA;
@@ -79,4 +80,19 @@ body {
   width: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 13px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  background-color: rgba(200, 200, 200, 0.2);
+  line-height: 50px;
+}
+
+.footer .menu.btn {
+  text-align: center;
+  /*border: 1px solid red;*/
 }

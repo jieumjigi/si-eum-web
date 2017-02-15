@@ -1,23 +1,8 @@
 console.log("Welcome to SIEUM");
 var $mobile = $('.mobile');
-var container = `\
-    <div class="container">\
-      <div class="wrapper">\
-        <div class="poem title"></div>\
-        <div class="poem content"></div>\
-        <div class="deco"><div class="dash"></div></div>\
-        <div class="poem author"></div>\
-      </div>\
-    </div>`;
 var week_data, todat_data;
 
-// $.ajax({
-//   url: "http://localhost:3000/apis/sieum_data",
-//   dataType: "jsonp",
-//   error: withoutServer
-// }).done(whenServerWorking);
-
-$.get("http://localhost:3000/apis/sieum_data", whenServerWorking, "jsonp")
+$.get("http://localhost:3000/apis/sieum_data", withServer, "jsonp")
  .fail(withoutServer);
 
 function withoutServer() {
@@ -36,7 +21,6 @@ function withoutServer() {
 }
 
 function makeWeekData(obj, idx) {
-  $mobile.prepend(container);
   _.each(obj, function(val, key) {
     if (val.match(/\s\s/)) {
       obj[key] = val.replace(/(\s{2})+/g, '<br/>')
@@ -45,7 +29,7 @@ function makeWeekData(obj, idx) {
   return obj;
 }
 
-function whenServerWorking(res) {
+function withServer(res) {
   week_data = _.map(JSON.parse(res), makeWeekData);
   
   var $poem = {
